@@ -34,7 +34,8 @@ func serve_redis(c chan int) {
 		fmt.Println(value)
 
 		// ignore request, send back pong
-		conn.Write([]byte("+OK\r\n"))
+		writer := NewWriter(conn)
+		writer.Write(Value{typ: "string", str: "OK"})
 	}
 
 }
